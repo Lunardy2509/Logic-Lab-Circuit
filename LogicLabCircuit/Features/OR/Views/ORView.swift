@@ -11,13 +11,19 @@ struct ORView: View {
     @ObservedObject var viewModel: ORViewModel
 
     var body: some View {
-        ZStack {
-            ORWirePath(viewModel: viewModel)
-            ORGateLayout(viewModel: viewModel)
+        VStack(spacing: -100) {
+            Text("OR Logic Gate")
+                .font(.title3)
+                .bold()
+            
+            ZStack {
+                ORWirePath(viewModel: viewModel)
+                ORGateLayout(viewModel: viewModel)
+            }
+            .frame(width: 360, height: 300)
+            .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
+            .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
         }
-        .frame(width: 360, height: 300)
-        .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
-        .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
     }
 }
 #Preview {

@@ -11,13 +11,19 @@ struct XORView: View {
     @ObservedObject var viewModel: XORViewModel
 
     var body: some View {
-        ZStack {
-            XORWirePath(viewModel: viewModel)
-            XORGateLayout(viewModel: viewModel)
+        VStack(spacing: -100) {
+            Text("XOR Logic Gate")
+                .font(.title3)
+                .bold()
+            
+            ZStack {
+                XORWirePath(viewModel: viewModel)
+                XORGateLayout(viewModel: viewModel)
+            }
+            .frame(width: 360, height: 300)
+            .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
+            .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
         }
-        .frame(width: 360, height: 300)
-        .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
-        .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
     }
 }
 

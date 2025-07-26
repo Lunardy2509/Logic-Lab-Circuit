@@ -11,7 +11,11 @@ struct ANDView: View {
     @ObservedObject var viewModel: ANDViewModel
 
     var body: some View {
-        VStack {
+        VStack(spacing: -100) {
+            Text("AND Logic Gate")
+                .font(.title3)
+                .bold()
+            
             ZStack {
                 ANDWirePath(viewModel: viewModel)
                 ANDGateLayout(viewModel: viewModel)
@@ -20,7 +24,7 @@ struct ANDView: View {
             .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
             .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
     }
 }
