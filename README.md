@@ -3,7 +3,7 @@
 
 | | | |
 |---|---|---|
-| ![1](https://github.com/Lunardy2509/lunardy2509.github.io/blob/main/portfolio/public/assets/preview/LLC-1.PNG) | ![2](https://github.com/Lunardy2509/lunardy2509.github.io/blob/main/portfolio/public/assets/preview/LLC-2.PNG) | ![3](https://github.com/Lunardy2509/lunardy2509.github.io/blob/main/portfolio/public/assets/preview/LLC-3.PNG) |
+| ![1](https://github.com/Lunardy2509/lunardy2509.github.io/blob/main/portfolio/public/assets/preview/LLC-1.jpeg) | ![2](https://github.com/Lunardy2509/lunardy2509.github.io/blob/main/portfolio/public/assets/preview/LLC-2.jpeg) | ![3](https://github.com/Lunardy2509/lunardy2509.github.io/blob/main/portfolio/public/assets/preview/LLC-3.jpeg) |
 
 </details>
 
