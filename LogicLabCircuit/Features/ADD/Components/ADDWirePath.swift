@@ -1,9 +1,10 @@
 //
-//  WirePathView.swift
+//  ADDWirePath.swift
 //  LogicLabCircuit
 //
 //  Created by Ferdinand Lunardy on 22/07/25.
 //
+
 import SwiftUI
 
 struct ADDWirePath: View {

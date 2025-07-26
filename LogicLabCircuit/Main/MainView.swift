@@ -10,47 +10,83 @@ import SwiftUI
 struct MainView: View {
     @ObservedObject var viewModel: MainViewModel
     @ObservedObject var addViewModel: ADDViewModel
-
+    @ObservedObject var subViewModel: SUBViewModel
+    
     var body: some View {
-        VStack(spacing: 20) {
+        VStack {
             Text("Logic Lab Circuit").bold()
                 .font(.title)
-
+            Text("Simulator")
+                .font(.title3)
+            
+            // Picker for selecting operation
+            Picker("Operation", selection: $viewModel.selectedOperation) {
+                ForEach(ALUOperation.allCases, id: \.self) { operation in
+                    Text(operation.rawValue).tag(operation)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+            
+            Divider()
+            
+            // Dynamically display the selected view
+            Group {
+                switch viewModel.selectedOperation {
+                case .add:
+                    ADDView(viewModel: addViewModel)
+                case .sub:
+                    SUBView(viewModel: subViewModel)
+                default:
+                    Text("Operation not supported yet.")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                }
+                
+            }
+            .frame(width: 300, height: 300)
+            // Inputs below the picker
             HStack {
                 VStack {
                     Text("Input A")
-                    Toggle("", isOn: $addViewModel.inputA)
-                        .labelsHidden()
-                        .padding()
+                    Toggle("", isOn: Binding(
+                        get: { addViewModel.inputA || subViewModel.inputA },
+                        set: { value in
+                            addViewModel.inputA = value
+                            subViewModel.inputA = value
+                        }
+                    ))
+                    .labelsHidden()
+                    .padding()
                 }
-
+                
                 VStack {
                     Text("Input B")
-                    Toggle("", isOn: $addViewModel.inputB)
-                        .labelsHidden()
-                        .padding()
+                    Toggle("", isOn: Binding(
+                        get: { addViewModel.inputB || subViewModel.inputB },
+                        set: { value in
+                            addViewModel.inputB = value
+                            subViewModel.inputB = value
+                        }
+                    ))
+                    .labelsHidden()
+                    .padding()
                 }
-
+                
                 VStack {
                     Text("Input Ci")
-                    Toggle("", isOn: $addViewModel.inputCi)
-                        .labelsHidden()
-                        .padding()
+                    Toggle("", isOn: Binding(
+                        get: { addViewModel.inputCi || subViewModel.inputCi },
+                        set: { value in
+                            addViewModel.inputCi = value
+                            subViewModel.inputCi = value
+                        }
+                    ))
+                    .labelsHidden()
+                    .padding()
                 }
             }
-
-            Divider()
-
-            ADDView(viewModel: addViewModel)
-
-            if viewModel.isTapped {
-                Text("Result")
-                    .font(.headline)
-                Text("Decimal: \(viewModel.result)")
-                Text("Binary: \(viewModel.binaryResult)")
-                Text("Hex: \(viewModel.hexResult)")
-            }
-
+            
             Spacer()
         }
         .onTapGesture {
@@ -60,5 +96,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView(viewModel: MainViewModel(), addViewModel: ADDViewModel())
+    MainView(viewModel: MainViewModel(), addViewModel: ADDViewModel(), subViewModel: SUBViewModel())
 }

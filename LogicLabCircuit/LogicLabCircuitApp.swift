@@ -11,7 +11,11 @@ import SwiftUI
 struct LogicLabCircuitApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView(viewModel: MainViewModel(), addViewModel: ADDViewModel())
+            MainView(
+                viewModel: MainViewModel(),
+                addViewModel: ADDViewModel(),
+                subViewModel: SUBViewModel()
+            )
         }
     }
 }

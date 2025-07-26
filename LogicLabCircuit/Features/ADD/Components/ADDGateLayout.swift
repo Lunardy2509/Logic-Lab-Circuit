@@ -4,6 +4,7 @@
 //
 //  Created by Ferdinand Lunardy on 22/07/25.
 //
+
 import SwiftUI
 
 struct ADDGateLayout: View {

@@ -4,6 +4,7 @@
 //
 //  Created by Ferdinand Lunardy on 22/07/25.
 //
+
 import SwiftUI
 
 struct ADDLogicNode: View {
@@ -18,6 +19,7 @@ struct ADDLogicNode: View {
                 .frame(width: 20, height: 20)
             Text(label)
                 .font(font)
+                .foregroundStyle(Color(.black))
         }
     }
 }

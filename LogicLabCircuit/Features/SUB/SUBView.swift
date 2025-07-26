@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct SUBView: View {
-    @ObservedObject var viewModel: MainViewModel
+    @ObservedObject var viewModel: SUBViewModel
 
     var body: some View {
         ZStack {
-            // Add wire paths and gate layouts specific to subtraction
-            Text("Subtraction Logic Gates")
+            SUBWirePath(viewModel: viewModel)
+            SUBGateLayout(viewModel: viewModel)
         }
-        .frame(width: 300, height: 300)
+        .frame(width: 360, height: 300)
+        .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
+        .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
+        .onChange(of: viewModel.inputCi) { viewModel.computeOutput() }
     }
 }
 
 #Preview {
-    SUBView(viewModel: MainViewModel())
+    let vm = SUBViewModel()
+    vm.inputA = true
+    vm.inputB = false
+    vm.inputCi = true
+    vm.computeOutput()
+    return SUBView(viewModel: vm)
 }

@@ -14,20 +14,16 @@ struct ALUModel {
             return a &+ b
         case .sub:
             return a &- b
-        case .mul:
-            return a &* b
-        case .div:
-            return b == 0 ? 0 : a / b // Handle division by zero
+//        case .mul:
+//            return a &* b
+//        case .div:
+//            return b == 0 ? 0 : a / b // Handle division by zero
         case .and:
             return a & b
         case .or:
             return a | b
         case .xor:
             return a ^ b
-        case .shiftLeft:
-            return a << 1
-        case .shiftRight:
-            return a >> 1
         }
     }
 }
