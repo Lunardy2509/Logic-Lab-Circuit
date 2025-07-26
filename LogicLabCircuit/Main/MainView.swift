@@ -8,64 +8,41 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject var viewModel = MainViewModel()
-    
+    @ObservedObject var viewModel: MainViewModel
+    @ObservedObject var addViewModel: ADDViewModel
+
     var body: some View {
         VStack(spacing: 20) {
             Text("Logic Lab Circuit").bold()
                 .font(.title)
-            Text("8-bit ALU simulator")
-                .font(.title3)
-            
+
             HStack {
                 VStack {
                     Text("Input A")
-                    TextField("Input A (0-255)", text: Binding(
-                        get: { String(viewModel.inputA) },
-                        set: { viewModel.inputA = UInt8(clamping: Int($0) ?? 0) }
-                    ))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.numberPad)
+                    Toggle("", isOn: $addViewModel.inputA)
+                        .labelsHidden()
+                        .padding()
                 }
-                
+
                 VStack {
                     Text("Input B")
-                    TextField("Input B (0-255)", text: Binding(
-                        get: { String(viewModel.inputB) },
-                        set: { viewModel.inputB = UInt8(clamping: Int($0) ?? 0) }
-                    ))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.numberPad)
+                    Toggle("", isOn: $addViewModel.inputB)
+                        .labelsHidden()
+                        .padding()
+                }
+
+                VStack {
+                    Text("Input Ci")
+                    Toggle("", isOn: $addViewModel.inputCi)
+                        .labelsHidden()
+                        .padding()
                 }
             }
-            
-            HStack {
-                Picker("Operation", selection: $viewModel.selectedOperation){
-                    ForEach(ALUOperation.allCases, id: \.self) {
-                        Text($0.rawValue)
-                    }
-                }
-                .pickerStyle(MenuPickerStyle())
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray6)))
-                
-                Button(action: {
-                    UIApplication.shared.endEditing()
-                    viewModel.calculate()
-                    viewModel.isTapped = true
-                }) {
-                    Text("Calculate").bold()
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                        .background(Color.blue)
-                        .foregroundColor(.primary)
-                        .cornerRadius(8)
-                }
-            }
-            
+
             Divider()
-            
-            ADDView()
-            
+
+            ADDView(viewModel: addViewModel)
+
             if viewModel.isTapped {
                 Text("Result")
                     .font(.headline)
@@ -73,7 +50,7 @@ struct MainView: View {
                 Text("Binary: \(viewModel.binaryResult)")
                 Text("Hex: \(viewModel.hexResult)")
             }
-    
+
             Spacer()
         }
         .onTapGesture {
@@ -83,5 +60,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(viewModel: MainViewModel(), addViewModel: ADDViewModel())
 }

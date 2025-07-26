@@ -10,7 +10,6 @@ struct ADDLogicNode: View {
     var imageName: String
     var label: String
     var font: Font = .footnote
-    var color: Color = .primary
 
     var body: some View {
         ZStack {
@@ -19,7 +18,6 @@ struct ADDLogicNode: View {
                 .frame(width: 20, height: 20)
             Text(label)
                 .font(font)
-                .foregroundColor(color)
         }
     }
 }
