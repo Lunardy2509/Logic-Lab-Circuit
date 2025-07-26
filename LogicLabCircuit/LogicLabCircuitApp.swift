@@ -14,7 +14,10 @@ struct LogicLabCircuitApp: App {
             MainView(
                 viewModel: MainViewModel(),
                 addViewModel: ADDViewModel(),
-                subViewModel: SUBViewModel()
+                subViewModel: SUBViewModel(),
+                andViewModel: ANDViewModel(),
+                orViewModel: ORViewModel(),
+                xorViewModel: XORViewModel()
             )
         }
     }

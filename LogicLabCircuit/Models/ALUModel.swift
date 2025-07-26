@@ -14,10 +14,6 @@ struct ALUModel {
             return a &+ b
         case .sub:
             return a &- b
-//        case .mul:
-//            return a &* b
-//        case .div:
-//            return b == 0 ? 0 : a / b // Handle division by zero
         case .and:
             return a & b
         case .or:

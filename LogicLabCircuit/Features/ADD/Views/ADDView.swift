@@ -9,9 +9,13 @@ import SwiftUI
 
 struct ADDView: View {
     @ObservedObject var viewModel: ADDViewModel
-
+    
     var body: some View {
-        Group {
+        VStack(spacing: 0) {
+            Text("Full Adder Circuit")
+                .font(.title3)
+                .bold()
+            
             ZStack {
                 ADDWirePath(viewModel: viewModel)
                 ADDGateLayout(viewModel: viewModel)
