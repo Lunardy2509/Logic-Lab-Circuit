@@ -14,123 +14,194 @@ struct ADDWirePath: View {
     let r: CGFloat = 3.0
     
     var body: some View {
-        Path { path in
+        ZStack {
             // A to XOR1
-            path.move(to: CGPoint(x: 18, y: 25))
-            path.addLine(to: CGPoint(x: 65, y: 25))
+            Path { path in
+                path.move(to: CGPoint(x: 18, y: 25))
+                path.addLine(to: CGPoint(x: 65, y: 25))
+            }
+            .stroke(viewModel.inputA ? activeColor : inactiveColor, lineWidth: 3)
             
             // B to XOR1
-            path.move(to: CGPoint(x: 18, y: 65))
-            path.addLine(to: CGPoint(x: 65, y: 65))
+            Path { path in
+                path.move(to: CGPoint(x: 18, y: 65))
+                path.addLine(to: CGPoint(x: 65, y: 65))
+            }
+            .stroke(viewModel.inputB ? activeColor : inactiveColor, lineWidth: 3)
             
             // XOR1 output to XOR2
-            path.move(to: CGPoint(x: 118, y: 45))
-            path.addLine(to: CGPoint(x: 150, y: 45))
+            Path { path in
+                path.move(to: CGPoint(x: 118, y: 45))
+                path.addLine(to: CGPoint(x: 150, y: 45))
+            }
+            .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
-            // XOR1 output to XOR2
-            path.move(to: CGPoint(x: 150, y: 45))
-            path.addLine(to: CGPoint(x: 150, y: 65))
+            Path { path in
+                path.move(to: CGPoint(x: 150, y: 45))
+                path.addLine(to: CGPoint(x: 150, y: 65))
+            }
+            .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
-            // dot at XOR1 output to XOR2 (150, 65)
-            path.addEllipse(in: CGRect(x: 150 - r, y: 65 - r, width: r * 2, height: r * 2))
+            Path { path in
+                path.addEllipse(in: CGRect(x: 150 - r, y: 65 - r, width: r * 2, height: r * 2))
+            }
+            .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
-            // XOR1 output to XOR2
-            path.move(to: CGPoint(x: 150, y: 65))
-            path.addLine(to: CGPoint(x: 175, y: 65))
-            
-            // Cin to XOR2
-            path.move(to: CGPoint(x: 18, y: 105))
-            path.addLine(to: CGPoint(x: 80, y: 105))
-            
-            // dot at Cin to XOR2 (80, 105)
-            path.addEllipse(in: CGRect(x: 80 - r, y: 105 - r, width: r * 2, height: r * 2))
-            
-            // Cin to XOR2
-            path.move(to: CGPoint(x: 80, y: 95))
-            path.addLine(to: CGPoint(x: 80, y: 105))
+            Path { path in
+                path.move(to: CGPoint(x: 150, y: 65))
+                path.addLine(to: CGPoint(x: 175, y: 65))
+            }
+            .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
             // Cin to XOR2
-            path.move(to: CGPoint(x: 80, y: 95))
-            path.addLine(to: CGPoint(x: 175, y: 95))
+            Path { path in
+                path.move(to: CGPoint(x: 18, y: 105))
+                path.addLine(to: CGPoint(x: 80, y: 105))
+            }
+            .stroke(viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
+            
+            Path { path in
+                path.addEllipse(in: CGRect(x: 80 - r, y: 105 - r, width: r * 2, height: r * 2))
+            }
+            .stroke(viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
+            
+            Path { path in
+                path.move(to: CGPoint(x: 80, y: 95))
+                path.addLine(to: CGPoint(x: 80, y: 105))
+            }
+            .stroke(viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
+            
+            Path { path in
+                path.move(to: CGPoint(x: 80, y: 95))
+                path.addLine(to: CGPoint(x: 175, y: 95))
+            }
+            .stroke(viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
             
             // XOR2 output to SUM
-            path.move(to: CGPoint(x: 228, y: 80))
-            path.addLine(to: CGPoint(x: 325, y: 80))
+            Path { path in
+                path.move(to: CGPoint(x: 228, y: 80))
+                path.addLine(to: CGPoint(x: 325, y: 80))
+            }
+            .stroke(viewModel.outputS ? activeColor : inactiveColor, lineWidth: 3)
             
-            // dot at A to AND1 (50, 25)
-            path.addEllipse(in: CGRect(x: 50 - r, y: 25 - r, width: r * 2, height: r * 2))
+            // dot at A to AND1
+            Path { path in
+                path.addEllipse(in: CGRect(x: 50 - r, y: 25 - r, width: r * 2, height: r * 2))
+            }
+            .stroke(viewModel.inputA ? activeColor : inactiveColor, lineWidth: 3)
             
-            // A to AND1
-            path.move(to: CGPoint(x: 50, y: 25))
-            path.addLine(to: CGPoint(x: 50, y: 240))
+            Path { path in
+                path.move(to: CGPoint(x: 50, y: 25))
+                path.addLine(to: CGPoint(x: 50, y: 240))
+            }
+            .stroke(viewModel.inputA ? activeColor : inactiveColor, lineWidth: 3)
             
-            // A to AND1
-            path.move(to: CGPoint(x: 50, y: 240))
-            path.addLine(to: CGPoint(x: 115, y: 240))
+            Path { path in
+                path.move(to: CGPoint(x: 50, y: 240))
+                path.addLine(to: CGPoint(x: 115, y: 240))
+            }
+            .stroke(viewModel.inputA ? activeColor : inactiveColor, lineWidth: 3)
             
-            // dot at B to AND1 (30, 65)
-            path.addEllipse(in: CGRect(x: 30 - r, y: 65 - r, width: r * 2, height: r * 2))
+            // dot at B to AND1
+            Path { path in
+                path.addEllipse(in: CGRect(x: 30 - r, y: 65 - r, width: r * 2, height: r * 2))
+            }
+            .stroke(viewModel.inputB ? activeColor : inactiveColor, lineWidth: 3)
             
-            // B to AND1
-            path.move(to: CGPoint(x: 30, y: 65))
-            path.addLine(to: CGPoint(x: 30, y: 270))
+            Path { path in
+                path.move(to: CGPoint(x: 30, y: 65))
+                path.addLine(to: CGPoint(x: 30, y: 270))
+            }
+            .stroke(viewModel.inputB ? activeColor : inactiveColor, lineWidth: 3)
             
-            // B to AND1
-            path.move(to: CGPoint(x: 30, y: 270))
-            path.addLine(to: CGPoint(x: 115, y: 270))
+            Path { path in
+                path.move(to: CGPoint(x: 30, y: 270))
+                path.addLine(to: CGPoint(x: 115, y: 270))
+            }
+            .stroke(viewModel.inputB ? activeColor : inactiveColor, lineWidth: 3)
             
             // Cin to AND2
-            path.move(to: CGPoint(x: 80, y: 105))
-            path.addLine(to: CGPoint(x: 80, y: 150))
+            Path { path in
+                path.move(to: CGPoint(x: 80, y: 105))
+                path.addLine(to: CGPoint(x: 80, y: 150))
+            }
+            .stroke(viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
             
-            // Cin to AND2
-            path.move(to: CGPoint(x: 80, y: 150))
-            path.addLine(to: CGPoint(x: 115, y: 150))
-            
-            // XOR1 output to AND2
-            path.move(to: CGPoint(x: 150, y: 65))
-            path.addLine(to: CGPoint(x: 150, y: 120))
-            
-            // XOR1 output to AND2
-            path.move(to: CGPoint(x: 150, y: 120))
-            path.addLine(to: CGPoint(x: 95, y: 120))
+            Path { path in
+                path.move(to: CGPoint(x: 80, y: 150))
+                path.addLine(to: CGPoint(x: 115, y: 150))
+            }
+            .stroke(viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
             
             // XOR1 output to AND2
-            path.move(to: CGPoint(x: 95, y: 120))
-            path.addLine(to: CGPoint(x: 95, y: 180))
+            Path { path in
+                path.move(to: CGPoint(x: 150, y: 65))
+                path.addLine(to: CGPoint(x: 150, y: 120))
+            }
+            .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
-            // XOR1 output to AND2
-            path.move(to: CGPoint(x: 95, y: 180))
-            path.addLine(to: CGPoint(x: 110, y: 180))
+            Path { path in
+                path.move(to: CGPoint(x: 150, y: 120))
+                path.addLine(to: CGPoint(x: 95, y: 120))
+            }
+            .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
+            
+            Path { path in
+                path.move(to: CGPoint(x: 95, y: 120))
+                path.addLine(to: CGPoint(x: 95, y: 180))
+            }
+            .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
+            
+            Path { path in
+                path.move(to: CGPoint(x: 95, y: 180))
+                path.addLine(to: CGPoint(x: 110, y: 180))
+            }
+            .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
             // AND1 output to OR
-            path.move(to: CGPoint(x: 160, y: 165))
-            path.addLine(to: CGPoint(x: 190, y: 165))
+            Path { path in
+                path.move(to: CGPoint(x: 160, y: 165))
+                path.addLine(to: CGPoint(x: 190, y: 165))
+            }
+            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
             
-            // AND1 output to OR
-            path.move(to: CGPoint(x: 190, y: 165))
-            path.addLine(to: CGPoint(x: 190, y: 180))
+            Path { path in
+                path.move(to: CGPoint(x: 190, y: 165))
+                path.addLine(to: CGPoint(x: 190, y: 180))
+            }
+            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
             
-            // AND1 output to OR
-            path.move(to: CGPoint(x: 190, y: 180))
-            path.addLine(to: CGPoint(x: 230, y: 180))
+            Path { path in
+                path.move(to: CGPoint(x: 190, y: 180))
+                path.addLine(to: CGPoint(x: 230, y: 180))
+            }
+            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
             
             // AND2 output to OR
-            path.move(to: CGPoint(x: 160, y: 255))
-            path.addLine(to: CGPoint(x: 190, y: 255))
+            Path { path in
+                path.move(to: CGPoint(x: 160, y: 255))
+                path.addLine(to: CGPoint(x: 190, y: 255))
+            }
+            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
             
-            // AND2 output to OR
-            path.move(to: CGPoint(x: 190, y: 255))
-            path.addLine(to: CGPoint(x: 190, y: 210))
+            Path { path in
+                path.move(to: CGPoint(x: 190, y: 255))
+                path.addLine(to: CGPoint(x: 190, y: 210))
+            }
+            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
             
-            // AND2 output to OR
-            path.move(to: CGPoint(x: 190, y: 210))
-            path.addLine(to: CGPoint(x: 230, y: 210))
+            Path { path in
+                path.move(to: CGPoint(x: 190, y: 210))
+                path.addLine(to: CGPoint(x: 230, y: 210))
+            }
+            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
             
             // OR output to COUT
-            path.move(to: CGPoint(x: 278, y: 195))
-            path.addLine(to: CGPoint(x: 325, y: 195))
+            Path { path in
+                path.move(to: CGPoint(x: 278, y: 195))
+                path.addLine(to: CGPoint(x: 325, y: 195))
+            }
+            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
         }
-        .stroke(viewModel.outputS || viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
     }
 }
