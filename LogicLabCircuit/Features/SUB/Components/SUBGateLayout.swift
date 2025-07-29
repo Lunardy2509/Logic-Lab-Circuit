@@ -17,7 +17,7 @@ struct SUBGateLayout: View {
                 logicNode(imageName: viewModel.inputA ? "IN_On" : "IN_Off", label: "A")
                 logicNode(imageName: viewModel.inputB ? "IN_On" : "IN_Off", label: "B")
                 VStack {
-                    logicNode(imageName: viewModel.inputCi ? "IN_On" : "IN_Off", label: "Ci", font: .caption)
+                    logicNode(imageName: viewModel.inputCi ? "IN_On" : "IN_Off", label: "Bi", font: .caption)
                 }
                 .padding(.top, 75)
             }
@@ -33,7 +33,7 @@ struct SUBGateLayout: View {
                             Image(viewModel.inputA != viewModel.inputB ? "NOT_On" : "NOT").resizable().frame(width: 35, height: 35) // XOR1 (A ⊕ B)
                         }
                         .padding(.bottom, 20)
-                        Image((!viewModel.inputA && viewModel.inputB) ? "AND_On" : "AND").resizable().frame(width: 50, height: 50) // XOR2 ((A⊕B)⊕Ci)
+                        Image((viewModel.inputCi) ? "AND_On" : "AND").resizable().frame(width: 50, height: 50) // XOR2 ((A⊕B)⊕Ci)
                     }
                     .padding(.top, 40)
                     HStack {
@@ -55,7 +55,7 @@ struct SUBGateLayout: View {
             // Outputs
             VStack(spacing: 105) {
                 logicNode(imageName: viewModel.outputD ? "OUT_On" : "OUT_Off", label: "D")
-                logicNode(imageName: viewModel.outputCo ? "OUT_On" : "OUT_Off", label: "Co", font: .caption)
+                logicNode(imageName: viewModel.outputCo ? "OUT_On" : "OUT_Off", label: "Bo", font: .caption)
             }
             .padding(.top, 25)
         }

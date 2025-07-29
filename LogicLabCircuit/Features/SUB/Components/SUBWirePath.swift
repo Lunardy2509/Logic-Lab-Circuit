@@ -151,11 +151,12 @@ struct SUBWirePath: View {
             }
             .stroke((!viewModel.inputA && viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
+            // NOT2 to AND2
             Path { path in
                 path.move(to: CGPoint(x: 190, y: 102.5))
                 path.addLine(to: CGPoint(x: 200, y: 102.5))
             }
-            .stroke((!viewModel.inputA && viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
+            .stroke((!viewModel.inputA && !viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
 
             // Ci to AND2
             Path { path in
@@ -175,19 +176,18 @@ struct SUBWirePath: View {
                 path.move(to: CGPoint(x: 245, y: 115))
                 path.addLine(to: CGPoint(x: 255, y: 115))
             }
-            .stroke((viewModel.inputCi && (viewModel.inputA != viewModel.inputB)) ? activeColor : inactiveColor, lineWidth: 3)
+            .stroke(((viewModel.inputA || viewModel.inputB) && viewModel.inputCi) ? inactiveColor : viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
             
             Path { path in
                 path.move(to: CGPoint(x: 255, y: 90))
                 path.addLine(to: CGPoint(x: 255, y: 115))
             }
-            .stroke((viewModel.inputCi && (viewModel.inputA != viewModel.inputB)) ? activeColor : inactiveColor, lineWidth: 3)
-            
+            .stroke(((viewModel.inputA || viewModel.inputB) && viewModel.inputCi) ? inactiveColor : viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
             Path { path in
                 path.move(to: CGPoint(x: 255, y: 90))
                 path.addLine(to: CGPoint(x: 270, y: 90))
             }
-            .stroke((viewModel.inputCi && (viewModel.inputA != viewModel.inputB)) ? activeColor : inactiveColor, lineWidth: 3)
+            .stroke(((viewModel.inputA || viewModel.inputB) && viewModel.inputCi) ? inactiveColor : viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
 
             // XOR to Co (Borrow)
             Path { path in

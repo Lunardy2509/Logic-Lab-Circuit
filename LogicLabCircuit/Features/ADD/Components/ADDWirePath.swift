@@ -163,19 +163,19 @@ struct ADDWirePath: View {
                 path.move(to: CGPoint(x: 160, y: 165))
                 path.addLine(to: CGPoint(x: 190, y: 165))
             }
-            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
+            .stroke((viewModel.inputA && viewModel.inputB) ? inactiveColor : viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
             
             Path { path in
                 path.move(to: CGPoint(x: 190, y: 165))
                 path.addLine(to: CGPoint(x: 190, y: 180))
             }
-            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
+            .stroke((viewModel.inputA && viewModel.inputB) ? inactiveColor : viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
             
             Path { path in
                 path.move(to: CGPoint(x: 190, y: 180))
                 path.addLine(to: CGPoint(x: 230, y: 180))
             }
-            .stroke(viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
+            .stroke((viewModel.inputA && viewModel.inputB) ? inactiveColor : viewModel.outputCo ? activeColor : inactiveColor, lineWidth: 3)
             
             // AND2 output to OR
             Path { path in
