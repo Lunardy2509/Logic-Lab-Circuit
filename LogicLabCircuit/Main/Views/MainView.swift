@@ -95,6 +95,20 @@ struct MainView: View {
                 }
             }
             
+            // Basic Formula of the Logic Circuit
+            VStack(alignment: .leading) {
+                Text("Formula:")
+                    .font(.headline)
+                VStack(alignment: .leading, spacing: 5) {
+                    ForEach(getFormula(for: viewModel.selectedOperation), id: \.self) { formula in
+                        Text("• \(formula)")
+                            .font(.body)
+                            .foregroundColor(.primary)
+                    }
+                }
+            }
+            .padding()
+            
             Spacer()
         }
         .onTapGesture {
@@ -121,6 +135,21 @@ struct MainView: View {
     private func updateInputCi(value: Bool) {
         addViewModel.inputCi = value
         subViewModel.inputCi = value
+    }
+    
+    private func getFormula(for operation: ALUOperation) -> [String] {
+        switch operation {
+        case .add:
+            return ["Sum: \(FullAdderFormula.sum)", "Carry Out: \(FullAdderFormula.carryOut)"]
+        case .sub:
+            return ["Difference: \(FullSubtractorFormula.difference)", "Borrow: \(FullSubtractorFormula.carryOut)"]
+        case .and:
+            return ["Conjunction: \(ANDFormula.conjunction)"]
+        case .or:
+            return ["Disjunction: \(ORFormula.disjunction)"]
+        case .xor:
+            return ["Exclusive OR: \(XORFormula.exclusiveOr)"]
+        }
     }
 }
 
