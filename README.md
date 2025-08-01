@@ -1,19 +1,18 @@
 <div align="center">
   <h1>Logic Lab Circuit</h1>
-  <img src="https://github.com/Lunardy2509/Logic-Lab-Circuit/blob/main/LogicLabCircuit/Resources/Assets.xcassets/AppIcon.appiconset/App%20Icon%20Light%20(No%20Alpha).png" width="200" height="200" alt="LogicLab Logo">
+  <img src="https://github.com/Lunardy2509/Logic-Lab-Circuit/blob/main/LogicLabCircuit/Resources/Assets.xcassets/App%20Icon%20Light.imageset/App%20Icon%20Light.png" width="200" height="200" alt="LogicLab Logo">
 
   ![Version](https://img.shields.io/badge/version-1.0-blue?style=for-the-badge)
   ![iOS](https://img.shields.io/badge/iOS-17%2B-lightgrey?style=for-the-badge)
 
   <p><strong>Logic Lab Circuit</strong> is a SwiftUI-powered iOS simulator designed to help early Computer Engineering learners understand and experiment with the core principles of digital logic through real-time simulation.</p>
 
+<ul>
+  <li><a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?template=bug_report.yml">🐛 Submit a Bug Report</a></li>
+  <li><a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?template=feature_request.yml">✨ Suggest a Feature</a></li>
+  <li><a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/discussions">💬 Ask in Discussions</a></li>
+</ul>
   <p>
-    <a href="https://lunardy2509.github.io/lq-docs/privacy/privacy-logiclab">📜 Privacy Policy</a><br><br>
-    <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/discussions">💬 Discussion</a> ·
-    <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?assignees=&labels=bug&template=bug_report.yml&title=%5BBug%5D
-">🐛 Report Bug</a> ·
-    <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=%5BFeature%5D
-">✨ Request Feature</a><br><br>
     <a href="https://apps.apple.com/id/app/logic-lab-circuit/id6479783533"><strong>📲 Download on App Store</strong></a>
   </p>
 </div>
