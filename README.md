@@ -8,9 +8,10 @@
   <p><strong>Logic Lab Circuit</strong> is a SwiftUI-powered iOS simulator designed to help early Computer Engineering learners understand and experiment with the core principles of digital logic through real-time simulation.</p>
 
 <p>
-  <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/discussions">💬 Discussion</a>
-  <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?template=bug_report.yml">· 🐛 Bug Report</a>
-  <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?template=feature_request.yml">· ✨ Suggest a Feature</a>
+  <a href="https://lunardy2509.github.io/lq-docs/privacy/privacy-logiclab">📜 Privacy Policy</a><br><br>
+  <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/discussions">💬 Discussion</a> ·
+  <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?assignees=&labels=bug&template=bug_report.yml&title=%5BBug%5D">🐛 Report Bug</a> ·
+  <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=%5BFeature%5D">✨ Request Feature</a><br><br>
   <a href="https://apps.apple.com/id/app/logic-lab-circuit/id6479783533"><strong>📲 Download on App Store</strong></a>
 </p>
 
