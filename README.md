@@ -1,23 +1,114 @@
-<details>
-<summary>Click to view Documentation Images</summary>
-
-| | | |
-|---|---|---|
-| ![1](https://github.com/Lunardy2509/lunardy2509.github.io/blob/main/portfolio/public/assets/preview/LLC-1.jpeg) | ![2](https://github.com/Lunardy2509/lunardy2509.github.io/blob/main/portfolio/public/assets/preview/LLC-2.jpeg) | ![3](https://github.com/Lunardy2509/lunardy2509.github.io/blob/main/portfolio/public/assets/preview/LLC-3.jpeg) |
-
-</details>
-
-<div align="justify">
+<div align="center">
   <h1>Logic Lab Circuit</h1>
-  <img src="https://github.com/Lunardy2509/Logic-Lab-Circuit/blob/main/LogicLabCircuit/Resources/Assets.xcassets/AppIcon.appiconset/App%20Icon%20Light.png" width="200" height="200" alt="LLC Logo"> 
+  <img src="https://github.com/Lunardy2509/Logic-Lab-Circuit/blob/main/Screenshots/LogicLabCircuitIcon.png" width="200" height="200" alt="LogicLab Logo">
 
-  <p>Still Cooking 🍳~</p>
+  ![Version](https://img.shields.io/badge/version-1.0-blue?style=for-the-badge)
+  ![iOS](https://img.shields.io/badge/iOS-17%2B-lightgrey?style=for-the-badge)
 
-  <h1>Description</h1>
-  <p>[Side Project – In Progress] Logic Lab Circuit is a Swift-based iOS application designed to help early computer engineering learners visualize and understand the core principles of digital logic. Focused on interactive education, this app simulates how fundamental logic gates (AND, OR, NOT, XOR) operate in real time, guiding users through the thought process and how digital systems perform binary operations such as addition (Full Adder Circuit) and subtraction (Full Subtractor Circuit), with multiplication and division modules coming soon.
-  </p>
-  <h2>Whats's Ahead</h2>
+  <p><strong>Logic Lab Circuit</strong> is a SwiftUI-powered iOS simulator designed to help early Computer Engineering learners understand and experiment with the core principles of digital logic through real-time simulation.</p>
+
   <p>
-    Upcoming features will include playful yet informative simulations for multiplication, division, and bitwise operations. The roadmap also includes visual breakdowns of how modern computers execute multi-bit operations step-by-step, helping learners grasp not just what’s happening but why and how it works under the hood.
+    <a href="https://lunardy2509.github.io/lq-docs/privacy/privacy-logiclab">📜 Privacy Policy</a><br><br>
+    <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/discussions">💬 Discussion</a> ·
+    <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?assignees=&labels=bug&template=bug_report.yml&title=%5BBug%5D
+">🐛 Report Bug</a> ·
+    <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=%5BFeature%5D
+">✨ Request Feature</a><br><br>
+    <a href="https://apps.apple.com/id/app/logic-lab-circuit/id6479783533"><strong>📲 Download on App Store</strong></a>
   </p>
 </div>
+
+---
+
+## 📍 What is Logic Lab Circuit?
+
+**Logic Lab Circuit** is an educational logic simulator built to visualize how binary logic gates function in real time.  
+It helps students understand how gates combine to form digital systems, such as:
+
+- AND, OR, NOT, XOR logic gates  
+- Full Adder Circuits  
+- Full Subtractor Circuits  
+- **Coming Soon:** Step-by-step visual circuit walkthroughs, Binary Multiplication and Division
+
+---
+
+## 🎯 Why I Built This
+
+To close the gap between **Boolean theory** and **practical circuit understanding**.  
+Logic Lab Circuit provides an interactive, self-guided simulation that:
+
+- Shows how binary inputs affect outputs  
+- Helps students develop logic flow and intuition  
+- Supports fundamental topics in digital electronics
+
+---
+
+## 🧪 Use Case Scenarios
+
+- 🎓 In-classroom demonstration tool for computer engineering instructors  
+- 🧩 Self-learning environment for digital logic beginners  
+- 🧠 Visual learner-friendly method to grasp circuit behavior  
+- 📲 On-the-go logic playground for Academy Learners
+
+---
+
+## 🚀 Features
+
+- ⚡ Real-time logic gate response  
+- 🔁 Toggle switches for A, B, and Carry-in inputs  
+- 🧮 Explore Full Adders and Subtractors  
+- 🎯 Built with SwiftUI’s declarative UI system  
+- 📖 Upcoming: Visual step-by-step learning modules
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer        | Tools                                  |
+| ------------ | -------------------------------------- |
+| Language     | Swift                                  |
+| Frameworks   | SwiftUI, Combine                       |
+| Architecture | MVVM                                   |
+| IDE          | Xcode                                  |
+| Platform     | iOS 17+                                |
+
+---
+
+## 📱 Screenshots
+
+<p float="left">
+  <img src="https://github.com/Lunardy2509/Logic-Lab-Circuit/blob/main/Screenshots/full_adder.png" width="300" />
+  <img src="https://github.com/Lunardy2509/Logic-Lab-Circuit/blob/main/Screenshots/full_subtractor.png" width="300" />
+</p>
+
+---
+
+## 🧑‍💻 Developer’s Note
+
+Created as a solo project, Logic Lab Circuit is built to make abstract logic systems approachable and interactive.  
+It is currently being tested and refined with Apple Developer Academy learners to improve both UX and pedagogical value.
+
+---
+
+## 🛣️ Roadmap
+
+- [ ] Step-by-step logic walkthrough module  
+- [ ] Binary Multiplication Simulation  
+- [ ] Binary Division Simulation  
+- [ ] Save & Export circuit state  
+- [ ] UI enhancements for education mode  
+
+---
+
+## 📄 License
+
+© 2025 Logic Lab Circuit. All rights reserved.  
+Built as part of an educational initiative at **Apple Developer Academy @BINUS**, intended for non-commercial and academic use.
+
+---
+
+## ✨ Explore Further
+
+Open a discussion or submit a feature request to suggest improvements or request extensions such as NAND/NOR/NXNOR gates, or classroom integrations.
+
+---
