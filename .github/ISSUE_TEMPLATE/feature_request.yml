@@ -1,5 +1,5 @@
 name: 💡 Feature Request
-description: Suggest a new feature or improvement for Ripely
+description: Suggest a new feature or improvement for Logic Lab Circuit
 title: "[Feature]"
 labels: ["enhancement"]
 assignees: []
@@ -8,14 +8,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 💡 Feature Request for Ripely
+        ## 💡 Feature Request for Logic Lab Circuit
+        Help us make Logic Lab Circuit better by suggesting useful features or enhancements.
 
   - type: textarea
     id: feature-description
     attributes:
       label: Describe the feature you'd like
-      description: What is the new feature or improvement you want to see in Ripely?
-      placeholder: e.g., Ability to classify apples from photos in the photo library.
+      description: What is the new feature or improvement you want to see in Logic Lab Circuit?
+      placeholder: e.g., Add binary multiplication visualizer with real-time walkthrough
     validations:
       required: true
 
@@ -23,16 +24,16 @@ body:
     id: how-it-works
     attributes:
       label: How should it work?
-      description: Describe how the feature should behave. Provide examples if helpful.
+      description: Describe how the feature should behave, ideally with an example.
 
   - type: textarea
     id: usefulness
     attributes:
       label: Why is it useful?
-      description: Explain how this would improve Ripely for you or other users.
+      description: Explain how this feature would help students or improve the simulation experience.
 
   - type: textarea
     id: context
     attributes:
       label: Additional context
-      description: Include any mockups, links, or extra details that can help us understand your request.
+      description: Include any mockups, diagrams, or links to similar features or references.
