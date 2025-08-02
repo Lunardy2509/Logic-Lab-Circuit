@@ -1,5 +1,5 @@
 name: 🐞 Bug Report
-description: Report a problem or unexpected behavior in Ripely
+description: Report a problem or unexpected behavior in Logic Lab Circuit
 title: "[Bug]"
 labels: ["bug"]
 assignees: []
@@ -8,14 +8,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 📋 Bug Report for Ripely
+        ## 🐞 Bug Report for Logic Lab Circuit
+        Please help us improve the app by reporting bugs you encounter during your logic circuit simulations.
 
   - type: input
     id: bug-description
     attributes:
       label: Describe the bug
-      description: A clear and concise description of what the bug is.
-      placeholder: e.g., App crashes when tapping the classify button
+      description: A clear and concise explanation of the issue.
+      placeholder: e.g., The AND gate does not update when inputs change
     validations:
       required: true
 
@@ -23,11 +24,12 @@ body:
     id: steps
     attributes:
       label: Steps to reproduce
-      description: What actions lead to the bug?
+      description: Provide a step-by-step guide to trigger the bug.
       placeholder: |
-        1. Go to '...'
-        2. Tap on '...'
-        3. See error '...'
+        1. Open Logic Lab Circuit
+        2. Add an AND gate to the canvas
+        3. Set Input A to true and Input B to false
+        4. Output remains unchanged
 
   - type: input
     id: expected
@@ -39,17 +41,17 @@ body:
     id: media
     attributes:
       label: Screenshots / Video (if available)
-      description: Drag and drop screenshots or screen recordings here.
+      description: Drag and drop screenshots or recordings that show the bug.
 
   - type: input
     id: environment
     attributes:
       label: Device & Environment
-      description: Provide info like device, iOS version, and Ripely version
-      placeholder: e.g., iPhone 15, iOS 18.3.1, Ripely 1.0.0
+      description: Provide info like your device model, iOS version, and app version.
+      placeholder: e.g., iPhone 15, iOS 17.5.1, Logic Lab Circuit 1.0.1
 
   - type: textarea
     id: context
     attributes:
       label: Additional context
-      description: Any other relevant info about the bug.
+      description: Any other information that might help us reproduce or understand the issue.
