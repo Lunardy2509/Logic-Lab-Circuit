@@ -12,7 +12,7 @@
   <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/discussions">💬 Discussion</a> ·
   <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?assignees=&labels=bug&template=bug_report.yml&title=%5BBug%5D">🐛 Report Bug</a> ·
   <a href="https://github.com/Lunardy2509/Logic-Lab-Circuit/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=%5BFeature%5D">✨ Request Feature</a><br><br>
-  <a href="https://apps.apple.com/id/app/logic-lab-circuit/id6479783533"><strong>📲 Download on App Store</strong></a>
+  <a href="https://apps.apple.com/id/app/logiclabcircuit/id6749439491"><strong>📲 Download on App Store</strong></a>
 </p>
 
 </div>
