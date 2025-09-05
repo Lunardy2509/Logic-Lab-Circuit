@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Logic Lab Circuit</h1>
-  <img src="https://github.com/Lunardy2509/Logic-Lab-Circuit/blob/main/LogicLabCircuit/Resources/Assets.xcassets/App%20Icon.imageset/App%20Icon.png" width="200" height="200" alt="LogicLab Logo">
+  <img src="https://github.com/Lunardy2509/Logic-Lab-Circuit/blob/main/LogicLabCircuit/Resources/Assets.xcassets/App%20Icon%20Light.imageset/App%20Icon%20Light.png" width="200" height="200" alt="LogicLab Logo">
 
   ![Version](https://img.shields.io/badge/version-1.0-yellow?style=for-the-badge)
   ![iOS](https://img.shields.io/badge/iOS-17%2B-lightgrey?style=for-the-badge)
