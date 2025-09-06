@@ -9,7 +9,7 @@ import Foundation
 enum ALUOperation: String, CaseIterable {
     case add = "ADD"
     case sub = "SUB"
-    case and = "AND"
-    case or = "OR"
-    case xor = "XOR"
+    case andGate = "AND"
+    case orGate = "OR"
+    case xorGate = "XOR"
 }

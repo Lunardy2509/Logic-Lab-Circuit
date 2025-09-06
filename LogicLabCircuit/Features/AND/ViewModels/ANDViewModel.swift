@@ -8,15 +8,15 @@
 import Combine
 import Foundation
 
-class ANDViewModel: ObservableObject {
+final class ANDViewModel: ObservableObject {
     @Published var inputA: Bool = false
     @Published var inputB: Bool = false
     @Published var output: Bool = false
 
     func computeOutput() {
-        let a: UInt8 = inputA ? 1 : 0
-        let b: UInt8 = inputB ? 1 : 0
-        let result = ALUModel.compute(a: a, b: b, operation: .and)
+        let intA: UInt8 = inputA ? 1 : 0
+        let intB: UInt8 = inputB ? 1 : 0
+        let result = ALUModel.compute(intA: intA, intB: intB, operation: .andGate)
         output = result == 1
     }
 }

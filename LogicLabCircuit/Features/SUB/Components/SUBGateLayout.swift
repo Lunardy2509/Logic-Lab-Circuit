@@ -25,7 +25,7 @@ struct SUBGateLayout: View {
 
             // Gates
             VStack(alignment: .leading, spacing: 15) {
-                HStack (alignment: .top, spacing: 15){
+                HStack(alignment: .top, spacing: 15) {
                     Image(viewModel.inputA ? "NOT_On" : "NOT").resizable().frame(width: 35, height: 35) // NOT A
                     Image(viewModel.inputA && viewModel.inputB ? "AND_On" : "AND").resizable().frame(width: 50, height: 50) // AND1 (¬A & B)
                     HStack {

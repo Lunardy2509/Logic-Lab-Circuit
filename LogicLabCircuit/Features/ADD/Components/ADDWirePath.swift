@@ -11,7 +11,7 @@ struct ADDWirePath: View {
     @ObservedObject var viewModel: ADDViewModel
     let activeColor = Color.green
     let inactiveColor = Color.gray
-    let r: CGFloat = 3.0
+    let radius: CGFloat = 3.0
     
     var body: some View {
         ZStack {
@@ -43,7 +43,7 @@ struct ADDWirePath: View {
             .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
             Path { path in
-                path.addEllipse(in: CGRect(x: 150 - r, y: 65 - r, width: r * 2, height: r * 2))
+                path.addEllipse(in: CGRect(x: 150 - radius, y: 65 - radius, width: radius * 2, height: radius * 2))
             }
             .stroke((viewModel.inputA != viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
@@ -61,7 +61,7 @@ struct ADDWirePath: View {
             .stroke(viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
             
             Path { path in
-                path.addEllipse(in: CGRect(x: 80 - r, y: 105 - r, width: r * 2, height: r * 2))
+                path.addEllipse(in: CGRect(x: 80 - radius, y: 105 - radius, width: radius * 2, height: radius * 2))
             }
             .stroke(viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
             
@@ -86,7 +86,7 @@ struct ADDWirePath: View {
             
             // dot at A to AND1
             Path { path in
-                path.addEllipse(in: CGRect(x: 50 - r, y: 25 - r, width: r * 2, height: r * 2))
+                path.addEllipse(in: CGRect(x: 50 - radius, y: 25 - radius, width: radius * 2, height: radius * 2))
             }
             .stroke(viewModel.inputA ? activeColor : inactiveColor, lineWidth: 3)
             
@@ -104,7 +104,7 @@ struct ADDWirePath: View {
             
             // dot at B to AND1
             Path { path in
-                path.addEllipse(in: CGRect(x: 30 - r, y: 65 - r, width: r * 2, height: r * 2))
+                path.addEllipse(in: CGRect(x: 30 - radius, y: 65 - radius, width: radius * 2, height: radius * 2))
             }
             .stroke(viewModel.inputB ? activeColor : inactiveColor, lineWidth: 3)
             

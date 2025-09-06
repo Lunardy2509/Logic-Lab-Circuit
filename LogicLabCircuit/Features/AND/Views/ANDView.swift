@@ -30,9 +30,9 @@ struct ANDView: View {
 }
 
 #Preview {
-    let vm = ANDViewModel()
-    vm.inputA = false
-    vm.inputB = true
-    vm.computeOutput()
-    return ANDView(viewModel: vm)
+    let viewModel = ANDViewModel()
+    viewModel.inputA = false
+    viewModel.inputB = true
+    viewModel.computeOutput()
+    return ANDView(viewModel: viewModel)
 }

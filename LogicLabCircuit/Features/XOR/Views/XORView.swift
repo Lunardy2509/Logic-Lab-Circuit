@@ -28,9 +28,9 @@ struct XORView: View {
 }
 
 #Preview {
-    let vm = XORViewModel()
-    vm.inputA = false
-    vm.inputB = true
-    vm.computeOutput()
-    return XORView(viewModel: vm)
+    let viewModel = XORViewModel()
+    viewModel.inputA = false
+    viewModel.inputB = true
+    viewModel.computeOutput()
+    return XORView(viewModel: viewModel)
 }

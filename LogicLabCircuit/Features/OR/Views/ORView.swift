@@ -27,9 +27,9 @@ struct ORView: View {
     }
 }
 #Preview {
-    let vm = ORViewModel()
-    vm.inputA = false
-    vm.inputB = true
-    vm.computeOutput()
-    return ORView(viewModel: vm)
+    let viewModel = ORViewModel()
+    viewModel.inputA = false
+    viewModel.inputB = true
+    viewModel.computeOutput()
+    return ORView(viewModel: viewModel)
 }

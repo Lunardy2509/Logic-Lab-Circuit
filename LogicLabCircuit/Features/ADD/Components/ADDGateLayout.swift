@@ -30,10 +30,14 @@ struct ADDGateLayout: View {
                 
                 HStack(alignment: .top, spacing: 50) {
                     VStack(spacing: 30) {
-                        Image((viewModel.inputA && viewModel.inputB && viewModel.inputCi) ? "AND" : ((viewModel.inputA || viewModel.inputB) && viewModel.inputCi) ? "AND_On" : "AND")
+                        let and1AllInputsOn = viewModel.inputA && viewModel.inputB && viewModel.inputCi
+                        let and1PartialInputsOn = (viewModel.inputA || viewModel.inputB) && viewModel.inputCi
+                        Image(and1AllInputsOn ? "AND" : and1PartialInputsOn ? "AND_On" : "AND")
                             .resizable()
                             .frame(width: 60, height: 60)
-                        Image(viewModel.outputCo || (viewModel.inputA && viewModel.inputB) ? "AND_On" : "AND").resizable().frame(width: 60, height: 60)
+                        Image(viewModel.outputCo || (viewModel.inputA && viewModel.inputB) ? "AND_On" : "AND")
+                            .resizable()
+                            .frame(width: 60, height: 60)
                     }
                     .padding(.leading, 50)
                     

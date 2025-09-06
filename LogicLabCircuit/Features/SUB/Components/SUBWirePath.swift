@@ -11,7 +11,7 @@ struct SUBWirePath: View {
     @ObservedObject var viewModel: SUBViewModel
     let activeColor = Color.green
     let inactiveColor = Color.gray
-    let r: CGFloat = 3.0
+    let radius: CGFloat = 3.0
 
     var body: some View {
         ZStack {
@@ -24,7 +24,7 @@ struct SUBWirePath: View {
             
             // dot at A output to XOR1
             Path { path in
-                path.addEllipse(in: CGRect(x: 25 - r, y: 60 - r, width: r * 2, height: r * 2))
+                path.addEllipse(in: CGRect(x: 25 - radius, y: 60 - radius, width: radius * 2, height: radius * 2))
             }
             .stroke(viewModel.inputA ? activeColor : inactiveColor, lineWidth: 3)
 
@@ -50,7 +50,7 @@ struct SUBWirePath: View {
             
             // dot at B output to AND1
             Path { path in
-                path.addEllipse(in: CGRect(x: 70 - r, y: 100 - r, width: r * 2, height: r * 2))
+                path.addEllipse(in: CGRect(x: 70 - radius, y: 100 - radius, width: radius * 2, height: radius * 2))
             }
             .stroke(viewModel.inputB ? activeColor : inactiveColor, lineWidth: 3)
             
@@ -69,7 +69,7 @@ struct SUBWirePath: View {
             
             // dot at AND1 output to NOT
             Path { path in
-                path.addEllipse(in: CGRect(x: 145 - r, y: 70 - r, width: r * 2, height: r * 2))
+                path.addEllipse(in: CGRect(x: 145 - radius, y: 70 - radius, width: radius * 2, height: radius * 2))
             }
             .stroke((!viewModel.inputA && viewModel.inputB) ? activeColor : inactiveColor, lineWidth: 3)
             
@@ -134,7 +134,7 @@ struct SUBWirePath: View {
             
             // dot at Ci output to AND
             Path { path in
-                path.addEllipse(in: CGRect(x: 160 - r, y: 215 - r, width: r * 2, height: r * 2))
+                path.addEllipse(in: CGRect(x: 160 - radius, y: 215 - radius, width: radius * 2, height: radius * 2))
             }
             .stroke(viewModel.inputCi ? activeColor : inactiveColor, lineWidth: 3)
 

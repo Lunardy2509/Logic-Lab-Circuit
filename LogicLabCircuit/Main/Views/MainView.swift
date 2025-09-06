@@ -40,11 +40,11 @@ struct MainView: View {
                     ADDView(viewModel: addViewModel)
                 case .sub:
                     SUBView(viewModel: subViewModel)
-                case .and:
+                case .andGate:
                     ANDView(viewModel: andViewModel)
-                case .or:
+                case .orGate:
                     ORView(viewModel: orViewModel)
-                case .xor:
+                case .xorGate:
                     XORView(viewModel: xorViewModel)
                 }
             }
@@ -143,11 +143,11 @@ struct MainView: View {
             return ["Sum: \(FullAdderFormula.sum)", "Carry Out: \(FullAdderFormula.carryOut)"]
         case .sub:
             return ["Difference: \(FullSubtractorFormula.difference)", "Borrow: \(FullSubtractorFormula.carryOut)"]
-        case .and:
+        case .andGate:
             return ["Conjunction: \(ANDFormula.conjunction)"]
-        case .or:
+        case .orGate:
             return ["Disjunction: \(ORFormula.disjunction)"]
-        case .xor:
+        case .xorGate:
             return ["Exclusive OR: \(XORFormula.exclusiveOr)"]
         }
     }

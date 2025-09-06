@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class ADDViewModel: ObservableObject {
+final class ADDViewModel: ObservableObject {
     @Published var inputA: Bool = false
     @Published var inputB: Bool = false
     @Published var inputCi: Bool = false

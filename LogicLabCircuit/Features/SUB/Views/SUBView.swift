@@ -29,10 +29,10 @@ struct SUBView: View {
 }
 
 #Preview {
-    let vm = SUBViewModel()
-    vm.inputA = true
-    vm.inputB = false
-    vm.inputCi = true
-    vm.computeOutput()
-    return SUBView(viewModel: vm)
+    let viewModel = SUBViewModel()
+    viewModel.inputA = true
+    viewModel.inputB = false
+    viewModel.inputCi = true
+    viewModel.computeOutput()
+    return SUBView(viewModel: viewModel)
 }
