@@ -1,4 +1,3 @@
-![LLC-1](https://github.com/user-attachments/assets/3263d966-0af7-4e48-bca3-652c9051d275)<div align="center">
   <h1>Logic Lab Circuit</h1>
   <img src="https://github.com/Lunardy2509/Logic-Lab-Circuit/blob/main/LogicLabCircuit/Resources/Assets.xcassets/App%20Icon%20Light.imageset/App%20Icon%20Light.png" width="200" height="200" alt="LogicLab Logo">
 
@@ -74,7 +73,8 @@ Logic Lab Circuit provides an interactive, self-guided simulation that:
 ---
 
 ## 📱 Screenshots
-
+| | |
+|---|---|
 | ![LLC-1](https://github.com/user-attachments/assets/f88dada4-8514-4f1a-be92-90128ca5c2dd) | ![LLC-2](https://github.com/user-attachments/assets/63828e6e-c44d-4267-bd94-2259fef613f5) |
 
 ---
