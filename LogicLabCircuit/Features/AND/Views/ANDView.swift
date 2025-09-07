@@ -13,7 +13,7 @@ struct ANDView: View {
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }, content: { viewStore in
-            VStack(spacing: -100) {
+            VStack(spacing: 0) {
                 Text("AND Logic Gate")
                     .font(.title3)
                     .bold()
@@ -33,7 +33,6 @@ struct ANDView: View {
                     viewStore.send(.computeOutput)
                 }
             }
-            .padding()
         })
     }
 }

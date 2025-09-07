@@ -13,7 +13,7 @@ struct ORView: View {
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }, content: { viewStore in
-            VStack(spacing: -100) {
+            VStack(spacing: 0) {
                 Text("OR Logic Gate")
                     .font(.title3)
                     .bold()

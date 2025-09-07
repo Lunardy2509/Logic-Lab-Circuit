@@ -13,7 +13,7 @@ struct XORView: View {
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }, content: { viewStore in
-            VStack(spacing: -100) {
+            VStack(spacing: 0) {
                 Text("XOR Logic Gate")
                     .font(.title3)
                     .bold()

@@ -13,8 +13,8 @@ struct FullAdderFormula {
 }
 
 struct FullSubtractorFormula {
-    static let difference = "Ci ⊕ (A ⊕ B)"
-    static let carryOut = "(A ⋅ B) ⊕ (Ci ⊕ (A ⊕ B))"
+    static let difference = "Bi ⊕ (A ⊕ B)"
+    static let borrow = "(A ⋅ B) ⊕ (Bi ⊕ (A ⊕ B))"
 }
 
 struct HalfAdderFormula {
@@ -23,8 +23,8 @@ struct HalfAdderFormula {
 }
 
 struct HalfSubtractorFormula {
-    static let difference = "A ⊕ (B ⊕ Ci)"
-    static let carryOut = "(A ⊕ B) ⋅ Ci"
+    static let difference = "A ⊕ (B ⊕ Bi)"
+    static let borrow = "(A ⊕ B) ⋅ Bi"
 }
 
 struct ANDFormula {
