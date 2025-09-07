@@ -33,72 +33,86 @@ struct MainView: View {
                 
                 Divider()
                 
-                // Dynamically display the selected view
-                Group {
-                    switch viewStore.selectedOperation {
-                    case .add:
-                        ADDView(store: store.scope(state: \.addFeature, action: \.addFeature))
-                    case .sub:
-                        SUBView(store: store.scope(state: \.subFeature, action: \.subFeature))
-                    case .andGate:
-                        ANDView(store: store.scope(state: \.andFeature, action: \.andFeature))
-                    case .orGate:
-                        ORView(store: store.scope(state: \.orFeature, action: \.orFeature))
-                    case .xorGate:
-                        XORView(store: store.scope(state: \.xorFeature, action: \.xorFeature))
-                    }
-                }
-                .frame(width: 300, height: 300)
-                .padding()
-                
-                // Inputs below the picker
-                HStack {
-                    VStack {
-                        Text("Input A")
-                        Toggle("", isOn: viewStore.binding(
-                            get: \.inputA,
-                            send: MainFeature.Action.inputAChanged
-                        ))
-                        .labelsHidden()
-                        .padding()
-                    }
-                    
-                    VStack {
-                        Text("Input B")
-                        Toggle("", isOn: viewStore.binding(
-                            get: \.inputB,
-                            send: MainFeature.Action.inputBChanged
-                        ))
-                        .labelsHidden()
-                        .padding()
-                    }
-                    
-                    if viewStore.selectedOperation == .add || viewStore.selectedOperation == .sub {
-                        VStack {
-                            Text("Input Ci")
-                            Toggle("", isOn: viewStore.binding(
-                                get: \.inputCi,
-                                send: MainFeature.Action.inputCiChanged
-                            ))
-                            .labelsHidden()
-                            .padding()
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        // Dynamically display the selected view
+                        Group {
+                            switch viewStore.selectedOperation {
+                            case .add:
+                                ADDView(store: store.scope(state: \.addFeature, action: \.addFeature))
+                            case .sub:
+                                SUBView(store: store.scope(state: \.subFeature, action: \.subFeature))
+                            case .andGate:
+                                ANDView(store: store.scope(state: \.andFeature, action: \.andFeature))
+                            case .orGate:
+                                ORView(store: store.scope(state: \.orFeature, action: \.orFeature))
+                            case .xorGate:
+                                XORView(store: store.scope(state: \.xorFeature, action: \.xorFeature))
+                            }
                         }
-                    }
-                }
-                
-                // Basic Formula of the Logic Circuit
-                VStack(alignment: .leading) {
-                    Text("Formula:")
-                        .font(.headline)
-                    VStack(alignment: .leading, spacing: 5) {
-                        ForEach(getFormula(for: viewStore.selectedOperation), id: \.self) { formula in
-                            Text("• \(formula)")
-                                .font(.body)
-                                .foregroundColor(.primary)
+                        .frame(width: 300, height: 300)
+                        
+                        // Inputs below the picker
+                        HStack {
+                            VStack {
+                                Text("Input A")
+                                Toggle("", isOn: viewStore.binding(
+                                    get: \.inputA,
+                                    send: MainFeature.Action.inputAChanged
+                                ))
+                                .labelsHidden()
+                                .padding()
+                            }
+                            
+                            VStack {
+                                Text("Input B")
+                                Toggle("", isOn: viewStore.binding(
+                                    get: \.inputB,
+                                    send: MainFeature.Action.inputBChanged
+                                ))
+                                .labelsHidden()
+                                .padding()
+                            }
+                            
+                            if viewStore.selectedOperation == .add || viewStore.selectedOperation == .sub {
+                                VStack {
+                                    Text(viewStore.selectedOperation == .sub ? "Input Bi" : "Input Ci")
+                                    Toggle("", isOn: viewStore.binding(
+                                        get: \.inputCi,
+                                        send: MainFeature.Action.inputCiChanged
+                                    ))
+                                    .labelsHidden()
+                                    .padding()
+                                }
+                            }
                         }
+                        
+                        // Basic Formula of the Logic Circuit
+                        VStack(alignment: .leading, spacing: 20) {
+                            VStack(alignment: .leading) {
+                                Text("Formula:")
+                                    .font(.headline)
+                                VStack(alignment: .leading, spacing: 5) {
+                                    ForEach(getFormula(for: viewStore.selectedOperation), id: \.self) { formula in
+                                        Text("• \(formula)")
+                                            .font(.body)
+                                            .foregroundColor(.primary)
+                                    }
+                                }
+                            }
+                            
+                            // Truth Table Section
+                            VStack(alignment: .leading) {
+                                TruthTableView(
+                                    truthTable: getTruthTable(for: viewStore.selectedOperation),
+                                    title: "Truth Table:"
+                                )
+                            }
+                        }
+                        .padding(.horizontal)
                     }
+                    .padding()
                 }
-                .padding()
                 
                 Spacer()
             }
@@ -111,15 +125,30 @@ struct MainView: View {
     private func getFormula(for operation: ALUOperation) -> [String] {
         switch operation {
         case .add:
-            return ["Sum: \(FullAdderFormula.sum)", "Carry Out: \(FullAdderFormula.carryOut)"]
+            return ["Sum (S): \(FullAdderFormula.sum)", "Carry Out (Co): \(FullAdderFormula.carryOut)"]
         case .sub:
-            return ["Difference: \(FullSubtractorFormula.difference)", "Borrow: \(FullSubtractorFormula.carryOut)"]
+            return ["Difference (D): \(FullSubtractorFormula.difference)", "Borrow (Bo): \(FullSubtractorFormula.borrow)"]
         case .andGate:
-            return ["Conjunction: \(ANDFormula.conjunction)"]
+            return ["AND Gate: \(ANDFormula.conjunction)"]
         case .orGate:
-            return ["Disjunction: \(ORFormula.disjunction)"]
+            return ["OR Gate: \(ORFormula.disjunction)"]
         case .xorGate:
-            return ["Exclusive OR: \(XORFormula.exclusiveOr)"]
+            return ["XOR Gate: \(XORFormula.exclusiveOr)"]
+        }
+    }
+    
+    private func getTruthTable(for operation: ALUOperation) -> TruthTable {
+        switch operation {
+        case .add:
+            return TruthTables.fullAdder
+        case .sub:
+            return TruthTables.fullSubtractor
+        case .andGate:
+            return TruthTables.andGate
+        case .orGate:
+            return TruthTables.orGate
+        case .xorGate:
+            return TruthTables.xorGate
         }
     }
 }

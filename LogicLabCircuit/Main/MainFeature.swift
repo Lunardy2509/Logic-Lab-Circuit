@@ -94,7 +94,7 @@ struct MainFeature {
                 state.inputCi = value
                 // Update relevant child features
                 state.addFeature.inputCi = value
-                state.subFeature.inputCi = value
+                state.subFeature.inputBi = value
                 return .run { send in
                     await send(.computeResult)
                 }

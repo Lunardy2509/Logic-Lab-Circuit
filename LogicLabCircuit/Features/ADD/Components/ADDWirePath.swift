@@ -16,6 +16,8 @@ struct ADDWirePath: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }, content: { viewStore in
+            let andAB = viewStore.inputA && viewStore.inputB
+            let xorAB = viewStore.inputA != viewStore.inputB
             ZStack {
                 // A to XOR1
                 Path { path in
@@ -35,47 +37,32 @@ struct ADDWirePath: View {
                 Path { path in
                     path.move(to: CGPoint(x: 118, y: 45))
                     path.addLine(to: CGPoint(x: 150, y: 45))
-                }
-                .stroke((viewStore.inputA != viewStore.inputB) ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 150, y: 45))
+                    path.addLine(to: CGPoint(x: 150, y: 45))
                     path.addLine(to: CGPoint(x: 150, y: 65))
-                }
-                .stroke((viewStore.inputA != viewStore.inputB) ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
+                    // Dot
                     path.addEllipse(in: CGRect(x: 150 - radius, y: 65 - radius, width: radius * 2, height: radius * 2))
-                }
-                .stroke((viewStore.inputA != viewStore.inputB) ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 150, y: 65))
+                    path.addLine(to: CGPoint(x: 150, y: 65))
                     path.addLine(to: CGPoint(x: 175, y: 65))
                 }
-                .stroke((viewStore.inputA != viewStore.inputB) ? activeColor : inactiveColor, lineWidth: 3)
+                .stroke(xorAB ? activeColor : inactiveColor, lineWidth: 3)
                 
                 // Cin to XOR2
                 Path { path in
                     path.move(to: CGPoint(x: 18, y: 105))
                     path.addLine(to: CGPoint(x: 80, y: 105))
-                }
-                .stroke(viewStore.inputCi ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.addEllipse(in: CGRect(x: 80 - radius, y: 105 - radius, width: radius * 2, height: radius * 2))
-                }
-                .stroke(viewStore.inputCi ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 80, y: 95))
+                    
+                    // Dot at Cin to XOR2
+                    path.addLine(to: CGPoint(x: 80, y: 95))
                     path.addLine(to: CGPoint(x: 80, y: 105))
+                    path.addLine(to: CGPoint(x: 80, y: 95))
+                    path.addLine(to: CGPoint(x: 175, y: 95))
                 }
                 .stroke(viewStore.inputCi ? activeColor : inactiveColor, lineWidth: 3)
                 
+                // Dot at Cin to XOR2 and AND2
                 Path { path in
-                    path.move(to: CGPoint(x: 80, y: 95))
-                    path.addLine(to: CGPoint(x: 175, y: 95))
+                    // Dot
+                    path.addEllipse(in: CGRect(x: 80 - radius, y: 105 - radius, width: radius * 2, height: radius * 2))
                 }
                 .stroke(viewStore.inputCi ? activeColor : inactiveColor, lineWidth: 3)
                 
@@ -122,15 +109,11 @@ struct ADDWirePath: View {
                 }
                 .stroke(viewStore.inputB ? activeColor : inactiveColor, lineWidth: 3)
                 
-                // Cin to AND2
+                // Dot at Cin to AND2
                 Path { path in
                     path.move(to: CGPoint(x: 80, y: 105))
                     path.addLine(to: CGPoint(x: 80, y: 150))
-                }
-                .stroke(viewStore.inputCi ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 80, y: 150))
+                    path.addLine(to: CGPoint(x: 80, y: 150))
                     path.addLine(to: CGPoint(x: 115, y: 150))
                 }
                 .stroke(viewStore.inputCi ? activeColor : inactiveColor, lineWidth: 3)
@@ -139,61 +122,33 @@ struct ADDWirePath: View {
                 Path { path in
                     path.move(to: CGPoint(x: 150, y: 65))
                     path.addLine(to: CGPoint(x: 150, y: 120))
-                }
-                .stroke((viewStore.inputA != viewStore.inputB) ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 150, y: 120))
+                    path.addLine(to: CGPoint(x: 150, y: 120))
                     path.addLine(to: CGPoint(x: 95, y: 120))
-                }
-                .stroke((viewStore.inputA != viewStore.inputB) ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 95, y: 120))
+                    path.addLine(to: CGPoint(x: 95, y: 120))
                     path.addLine(to: CGPoint(x: 95, y: 180))
-                }
-                .stroke((viewStore.inputA != viewStore.inputB) ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 95, y: 180))
+                    path.addLine(to: CGPoint(x: 95, y: 180))
                     path.addLine(to: CGPoint(x: 110, y: 180))
                 }
-                .stroke((viewStore.inputA != viewStore.inputB) ? activeColor : inactiveColor, lineWidth: 3)
+                .stroke(xorAB ? activeColor : inactiveColor, lineWidth: 3)
                 
                 // AND1 output to OR
                 Path { path in
                     path.move(to: CGPoint(x: 160, y: 165))
                     path.addLine(to: CGPoint(x: 190, y: 165))
-                }
-                .stroke((viewStore.inputA && viewStore.inputB) ? inactiveColor : viewStore.outputCo ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 190, y: 165))
+                    path.addLine(to: CGPoint(x: 190, y: 165))
                     path.addLine(to: CGPoint(x: 190, y: 180))
-                }
-                .stroke((viewStore.inputA && viewStore.inputB) ? inactiveColor : viewStore.outputCo ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 190, y: 180))
+                    path.addLine(to: CGPoint(x: 190, y: 180))
                     path.addLine(to: CGPoint(x: 230, y: 180))
                 }
-                .stroke((viewStore.inputA && viewStore.inputB) ? inactiveColor : viewStore.outputCo ? activeColor : inactiveColor, lineWidth: 3)
+                .stroke(andAB ? inactiveColor : viewStore.outputCo ? activeColor : inactiveColor, lineWidth: 3)
                 
                 // AND2 output to OR
                 Path { path in
                     path.move(to: CGPoint(x: 160, y: 255))
                     path.addLine(to: CGPoint(x: 190, y: 255))
-                }
-                .stroke(viewStore.outputCo ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 190, y: 255))
+                    path.addLine(to: CGPoint(x: 190, y: 255))
                     path.addLine(to: CGPoint(x: 190, y: 210))
-                }
-                .stroke(viewStore.outputCo ? activeColor : inactiveColor, lineWidth: 3)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 190, y: 210))
+                    path.addLine(to: CGPoint(x: 190, y: 210))
                     path.addLine(to: CGPoint(x: 230, y: 210))
                 }
                 .stroke(viewStore.outputCo ? activeColor : inactiveColor, lineWidth: 3)

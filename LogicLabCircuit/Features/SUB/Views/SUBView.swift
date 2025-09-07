@@ -32,7 +32,7 @@ struct SUBView: View {
                 .onChange(of: viewStore.inputB) {
                     viewStore.send(.computeOutput)
                 }
-                .onChange(of: viewStore.inputCi) {
+                .onChange(of: viewStore.inputBi) {
                     viewStore.send(.computeOutput)
                 }
             }
@@ -42,7 +42,7 @@ struct SUBView: View {
 
 #Preview {
     SUBView(
-        store: Store(initialState: SUBFeature.State(inputA: true, inputB: false, inputCi: true)) {
+        store: Store(initialState: SUBFeature.State(inputA: true, inputB: true, inputBi: false)) {
             SUBFeature()
         }
     )

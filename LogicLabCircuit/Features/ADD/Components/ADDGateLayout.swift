@@ -13,6 +13,9 @@ struct ADDGateLayout: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }, content: { viewStore in
+            let andAB = viewStore.inputA && viewStore.inputB
+            let orAB = viewStore.inputA || viewStore.inputB
+            let xorAB = viewStore.inputA != viewStore.inputB
             HStack(alignment: .top, spacing: 40) {
                 // Inputs
                 VStack(spacing: 20) {
@@ -24,7 +27,7 @@ struct ADDGateLayout: View {
                 // Gates
                 VStack(alignment: .leading, spacing: 25) {
                     HStack(alignment: .top, spacing: 50) {
-                        Image(((viewStore.inputA || viewStore.inputB)) && (viewStore.inputA != viewStore.inputB) ? "XOR_On" : "XOR")
+                        Image(orAB && xorAB ? "XOR_On" : "XOR")
                             .resizable()
                             .frame(width: 60, height: 60)
                         Image(viewStore.outputS ? "XOR_On" : "XOR").resizable().frame(width: 60, height: 60).padding(.top, 35)
@@ -32,12 +35,12 @@ struct ADDGateLayout: View {
                     
                     HStack(alignment: .top, spacing: 50) {
                         VStack(spacing: 30) {
-                            let and1AllInputsOn = viewStore.inputA && viewStore.inputB && viewStore.inputCi
-                            let and1PartialInputsOn = (viewStore.inputA || viewStore.inputB) && viewStore.inputCi
+                            let and1AllInputsOn = andAB && viewStore.inputCi
+                            let and1PartialInputsOn = orAB && viewStore.inputCi
                             Image(and1AllInputsOn ? "AND" : and1PartialInputsOn ? "AND_On" : "AND")
                                 .resizable()
                                 .frame(width: 60, height: 60)
-                            Image(viewStore.outputCo || (viewStore.inputA && viewStore.inputB) ? "AND_On" : "AND")
+                            Image(viewStore.outputCo || andAB ? "AND_On" : "AND")
                                 .resizable()
                                 .frame(width: 60, height: 60)
                         }

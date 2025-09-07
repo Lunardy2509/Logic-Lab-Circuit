@@ -14,15 +14,15 @@ struct SUBFeature {
     struct State: Equatable {
         var inputA: Bool = false
         var inputB: Bool = false
-        var inputCi: Bool = false
+        var inputBi: Bool = false
         var outputD: Bool = false // Difference
-        var outputCo: Bool = false // Borrow
+        var outputBo: Bool = false // Borrow
     }
     
     enum Action {
         case inputAChanged(Bool)
         case inputBChanged(Bool)
-        case inputCiChanged(Bool)
+        case inputBiChanged(Bool)
         case computeOutput
     }
     
@@ -41,17 +41,17 @@ struct SUBFeature {
                     await send(.computeOutput)
                 }
                 
-            case let .inputCiChanged(value):
-                state.inputCi = value
+            case let .inputBiChanged(value):
+                state.inputBi = value
                 return .run { send in
                     await send(.computeOutput)
                 }
                 
             case .computeOutput:
-                let notA = !state.inputA
+                let andAB = state.inputA && state.inputB
                 let xorAB = state.inputA != state.inputB
-                state.outputD = xorAB != state.inputCi
-                state.outputCo = (notA && state.inputB) || (state.inputCi && !xorAB)
+                state.outputD = xorAB != state.inputBi
+                state.outputBo = andAB != (state.inputBi != xorAB)
                 return .none
             }
         }

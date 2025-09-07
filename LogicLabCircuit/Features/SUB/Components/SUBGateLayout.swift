@@ -13,53 +13,49 @@ struct SUBGateLayout: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }, content: { viewStore in
+            let orAB = viewStore.inputA || viewStore.inputB
+            let xorAB = viewStore.inputA != viewStore.inputB
+            let xnorAB = !(viewStore.inputA != viewStore.inputB)
+            let notA = !viewStore.inputA
             HStack(alignment: .top, spacing: 20) {
                 // Inputs
-                VStack(spacing: 20) {
+                VStack(spacing: 10) {
+                    logicNode(imageName: viewStore.inputBi ? "IN_On" : "IN_Off", label: "Bin", font: .custom("SF Pro", size: 9))
+                        .padding(.bottom, 10)
                     logicNode(imageName: viewStore.inputA ? "IN_On" : "IN_Off", label: "A")
                     logicNode(imageName: viewStore.inputB ? "IN_On" : "IN_Off", label: "B")
-                    VStack {
-                        logicNode(imageName: viewStore.inputCi ? "IN_On" : "IN_Off", label: "Bi", font: .caption)
-                    }
-                    .padding(.top, 75)
                 }
-                .padding(.top, 5)
                 
                 // Gates
-                VStack(alignment: .leading, spacing: 15) {
-                    HStack(alignment: .top, spacing: 15) {
-                        Image(viewStore.inputA ? "NOT_On" : "NOT").resizable().frame(width: 35, height: 35) // NOT A
-                        Image(viewStore.inputA && viewStore.inputB ? "AND_On" : "AND").resizable().frame(width: 50, height: 50) // AND1 (¬A & B)
-                        HStack {
-                            HStack {
-                                Image(viewStore.inputA != viewStore.inputB ? "NOT_On" : "NOT").resizable().frame(width: 35, height: 35) // XOR1 (A ⊕ B)
-                            }
-                            .padding(.bottom, 20)
-                            Image((viewStore.inputCi) ? "AND_On" : "AND").resizable().frame(width: 50, height: 50) // XOR2 ((A⊕B)⊕Ci)
-                        }
-                        .padding(.top, 40)
-                        HStack {
-                            Image(viewStore.outputCo ? "OR_On" : "OR").resizable().frame(width: 50, height: 50) // OR (AND1 | AND2)
-                        }
-                        .padding(.top, 10)
+                VStack(alignment: .leading) {
+                    HStack(alignment: .top, spacing: 150) {
+                        Image(xorAB ? "XOR_On" : "XOR").resizable().frame(width: 45, height: 45)
+                            .padding(.leading, 20)
+                            .padding(.top, 45)
+                        Image(viewStore.outputD ? "XOR_On" : "XOR").resizable().frame(width: 45, height: 45)
                     }
-                    HStack {
-                        HStack {
-                            Image(viewStore.inputA != viewStore.inputB ? "XOR_On" : "XOR").resizable().frame(width: 50, height: 50) // AND2 (Ci & XOR1)
-                        }
-                        .padding(.bottom, 50)
-                        .padding(.leading, 50)
+                    
+                    HStack(alignment: .top, spacing: 20) {
                         Spacer()
-                        Image(viewStore.outputD ? "XOR_On" : "XOR").resizable().frame(width: 50, height: 50) // OR (AND1 | AND2)
+                        Image(orAB ? "NOT_On" : "NOT").resizable().frame(width: 30, height: 30)
+                        Image(xnorAB && viewStore.inputBi ? "AND_On" : "AND").resizable().frame(width: 45, height: 45)
+                        Image(viewStore.outputBo ? "OR_On" : "OR").resizable().frame(width: 45, height: 45)
+                            .padding(.top, 10)
                     }
+                    
+                    HStack(alignment: .top, spacing: 15) {
+                        Image(viewStore.inputA ? "NOT_On" : "NOT").resizable().frame(width: 30, height: 30)
+                        Image(viewStore.inputB && notA ? "AND_On" : "AND").resizable().frame(width: 45, height: 45)
+                    }
+                    .padding(.leading, 25)
                 }
                 
                 // Outputs
-                VStack(spacing: 105) {
+                VStack(spacing: 87.5) {
                     logicNode(imageName: viewStore.outputD ? "OUT_On" : "OUT_Off", label: "D")
-                    logicNode(imageName: viewStore.outputCo ? "OUT_On" : "OUT_Off", label: "Bo", font: .caption)
+                    logicNode(imageName: viewStore.outputBo ? "OUT_On" : "OUT_Off", label: "Bo", font: .custom("SF Pro", size: 9))
                 }
-                .padding(.top, 25)
+                .padding(.top, 12.5)
             }
         })
     }
