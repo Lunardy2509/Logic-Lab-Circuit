@@ -6,30 +6,46 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct ADDView: View {
-    @ObservedObject var viewModel: ADDViewModel
+    let store: StoreOf<ADDFeature>
     
     var body: some View {
-        VStack(spacing: 0) {
-            Text("Full Adder Circuit")
-                .font(.title3)
-                .bold()
-            
-            ZStack {
-                ADDWirePath(viewModel: viewModel)
-                ADDGateLayout(viewModel: viewModel)
+        WithViewStore(self.store, observe: { $0 }, content: { viewStore in
+            VStack(spacing: 0) {
+                Text("Full Adder Circuit")
+                    .font(.title3)
+                    .bold()
+                
+                ZStack {
+                    ADDWirePath(store: store)
+                    ADDGateLayout(store: store)
+                }
+                .frame(width: 300, height: 300)
+                .onAppear {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputA) {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputB) {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputCi) {
+                    viewStore.send(.computeOutput)
+                }
             }
-            .frame(width: 300, height: 300)
-            .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
-            .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
-            .onChange(of: viewModel.inputCi) { viewModel.computeOutput() }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
+        })
     }
 }
 
 #Preview {
-    ADDView(viewModel: ADDViewModel())
+    ADDView(
+        store: Store(initialState: ADDFeature.State()) {
+            ADDFeature()
+        }
+    )
 }

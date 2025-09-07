@@ -6,33 +6,44 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct SUBView: View {
-    @ObservedObject var viewModel: SUBViewModel
+    let store: StoreOf<SUBFeature>
 
     var body: some View {
-        VStack(spacing: 0) {
-            Text("Full Subtractor Circuit")
-                .font(.title3)
-                .bold()
-            
-            ZStack {
-                SUBWirePath(viewModel: viewModel)
-                SUBGateLayout(viewModel: viewModel)
+        WithViewStore(self.store, observe: { $0 }, content: { viewStore in
+            VStack(spacing: 0) {
+                Text("Full Subtractor Circuit")
+                    .font(.title3)
+                    .bold()
+                
+                ZStack {
+                    SUBWirePath(store: store)
+                    SUBGateLayout(store: store)
+                }
+                .frame(width: 360, height: 300)
+                .onAppear {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputA) {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputB) {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputCi) {
+                    viewStore.send(.computeOutput)
+                }
             }
-            .frame(width: 360, height: 300)
-            .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
-            .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
-            .onChange(of: viewModel.inputCi) { viewModel.computeOutput() }
-        }
+        })
     }
 }
 
 #Preview {
-    let viewModel = SUBViewModel()
-    viewModel.inputA = true
-    viewModel.inputB = false
-    viewModel.inputCi = true
-    viewModel.computeOutput()
-    return SUBView(viewModel: viewModel)
+    SUBView(
+        store: Store(initialState: SUBFeature.State(inputA: true, inputB: false, inputCi: true)) {
+            SUBFeature()
+        }
+    )
 }

@@ -6,31 +6,41 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct XORView: View {
-    @ObservedObject var viewModel: XORViewModel
+    let store: StoreOf<XORFeature>
 
     var body: some View {
-        VStack(spacing: -100) {
-            Text("XOR Logic Gate")
-                .font(.title3)
-                .bold()
-            
-            ZStack {
-                XORWirePath(viewModel: viewModel)
-                XORGateLayout(viewModel: viewModel)
+        WithViewStore(self.store, observe: { $0 }, content: { viewStore in
+            VStack(spacing: -100) {
+                Text("XOR Logic Gate")
+                    .font(.title3)
+                    .bold()
+                
+                ZStack {
+                    XORWirePath(store: store)
+                    XORGateLayout(store: store)
+                }
+                .frame(width: 360, height: 300)
+                .onAppear {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputA) {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputB) {
+                    viewStore.send(.computeOutput)
+                }
             }
-            .frame(width: 360, height: 300)
-            .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
-            .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
-        }
+        })
     }
 }
 
 #Preview {
-    let viewModel = XORViewModel()
-    viewModel.inputA = false
-    viewModel.inputB = true
-    viewModel.computeOutput()
-    return XORView(viewModel: viewModel)
+    XORView(
+        store: Store(initialState: XORFeature.State(inputA: false, inputB: true)) {
+            XORFeature()
+        }
+    )
 }

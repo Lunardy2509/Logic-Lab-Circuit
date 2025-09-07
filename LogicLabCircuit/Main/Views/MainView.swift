@@ -6,135 +6,106 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct MainView: View {
-    @ObservedObject var viewModel: MainViewModel
-    @ObservedObject var addViewModel: ADDViewModel
-    @ObservedObject var subViewModel: SUBViewModel
-    @ObservedObject var andViewModel: ANDViewModel
-    @ObservedObject var orViewModel: ORViewModel
-    @ObservedObject var xorViewModel: XORViewModel
+    let store: StoreOf<MainFeature>
     
     var body: some View {
-        VStack {
-            Text("Logic Lab Circuit").bold()
-                .font(.title)
-            Text("Simulator")
-                .font(.title3)
-            
-            // Picker for selecting operation
-            Picker("Operation", selection: $viewModel.selectedOperation) {
-                ForEach(ALUOperation.allCases, id: \.self) { operation in
-                    Text(operation.rawValue).tag(operation)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding()
-            
-            Divider()
-            
-            // Dynamically display the selected view
-            Group {
-                switch viewModel.selectedOperation {
-                case .add:
-                    ADDView(viewModel: addViewModel)
-                case .sub:
-                    SUBView(viewModel: subViewModel)
-                case .andGate:
-                    ANDView(viewModel: andViewModel)
-                case .orGate:
-                    ORView(viewModel: orViewModel)
-                case .xorGate:
-                    XORView(viewModel: xorViewModel)
-                }
-            }
-            .frame(width: 300, height: 300)
-            .padding()
-            
-            // Inputs below the picker
-            HStack {
-                VStack {
-                    Text("Input A")
-                    Toggle("", isOn: Binding(
-                        get: { viewModel.inputA },
-                        set: { value in
-                            viewModel.inputA = value
-                            updateInputA(value: value)
-                        }
-                    ))
-                    .labelsHidden()
-                    .padding()
-                }
+        WithViewStore(self.store, observe: { $0 }, content: { viewStore in
+            VStack {
+                Text("Logic Lab Circuit").bold()
+                    .font(.title)
+                Text("Simulator")
+                    .font(.title3)
                 
-                VStack {
-                    Text("Input B")
-                    Toggle("", isOn: Binding(
-                        get: { viewModel.inputB },
-                        set: { value in
-                            viewModel.inputB = value
-                            updateInputB(value: value)
-                        }
-                    ))
-                    .labelsHidden()
-                    .padding()
+                // Picker for selecting operation
+                Picker("Operation", selection: viewStore.binding(
+                    get: \.selectedOperation,
+                    send: MainFeature.Action.operationChanged
+                )) {
+                    ForEach(ALUOperation.allCases, id: \.self) { operation in
+                        Text(operation.rawValue).tag(operation)
+                    }
                 }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
                 
-                if viewModel.selectedOperation == .add || viewModel.selectedOperation == .sub {
+                Divider()
+                
+                // Dynamically display the selected view
+                Group {
+                    switch viewStore.selectedOperation {
+                    case .add:
+                        ADDView(store: store.scope(state: \.addFeature, action: \.addFeature))
+                    case .sub:
+                        SUBView(store: store.scope(state: \.subFeature, action: \.subFeature))
+                    case .andGate:
+                        ANDView(store: store.scope(state: \.andFeature, action: \.andFeature))
+                    case .orGate:
+                        ORView(store: store.scope(state: \.orFeature, action: \.orFeature))
+                    case .xorGate:
+                        XORView(store: store.scope(state: \.xorFeature, action: \.xorFeature))
+                    }
+                }
+                .frame(width: 300, height: 300)
+                .padding()
+                
+                // Inputs below the picker
+                HStack {
                     VStack {
-                        Text("Input Ci")
-                        Toggle("", isOn: Binding(
-                            get: { viewModel.inputCi },
-                            set: { value in
-                                viewModel.inputCi = value
-                                updateInputCi(value: value)
-                            }
+                        Text("Input A")
+                        Toggle("", isOn: viewStore.binding(
+                            get: \.inputA,
+                            send: MainFeature.Action.inputAChanged
                         ))
                         .labelsHidden()
                         .padding()
                     }
-                }
-            }
-            
-            // Basic Formula of the Logic Circuit
-            VStack(alignment: .leading) {
-                Text("Formula:")
-                    .font(.headline)
-                VStack(alignment: .leading, spacing: 5) {
-                    ForEach(getFormula(for: viewModel.selectedOperation), id: \.self) { formula in
-                        Text("• \(formula)")
-                            .font(.body)
-                            .foregroundColor(.primary)
+                    
+                    VStack {
+                        Text("Input B")
+                        Toggle("", isOn: viewStore.binding(
+                            get: \.inputB,
+                            send: MainFeature.Action.inputBChanged
+                        ))
+                        .labelsHidden()
+                        .padding()
+                    }
+                    
+                    if viewStore.selectedOperation == .add || viewStore.selectedOperation == .sub {
+                        VStack {
+                            Text("Input Ci")
+                            Toggle("", isOn: viewStore.binding(
+                                get: \.inputCi,
+                                send: MainFeature.Action.inputCiChanged
+                            ))
+                            .labelsHidden()
+                            .padding()
+                        }
                     }
                 }
+                
+                // Basic Formula of the Logic Circuit
+                VStack(alignment: .leading) {
+                    Text("Formula:")
+                        .font(.headline)
+                    VStack(alignment: .leading, spacing: 5) {
+                        ForEach(getFormula(for: viewStore.selectedOperation), id: \.self) { formula in
+                            Text("• \(formula)")
+                                .font(.body)
+                                .foregroundColor(.primary)
+                        }
+                    }
+                }
+                .padding()
+                
+                Spacer()
             }
-            .padding()
-            
-            Spacer()
-        }
-        .onTapGesture {
-            UIApplication.shared.endEditing()
-        }
-    }
-    
-    private func updateInputA(value: Bool) {
-        addViewModel.inputA = value
-        subViewModel.inputA = value
-        andViewModel.inputA = value
-        orViewModel.inputA = value
-        xorViewModel.inputA = value
-    }
-    
-    private func updateInputB(value: Bool) {
-        addViewModel.inputB = value
-        subViewModel.inputB = value
-        andViewModel.inputB = value
-        orViewModel.inputB = value
-        xorViewModel.inputB = value
-    }
-    
-    private func updateInputCi(value: Bool) {
-        addViewModel.inputCi = value
-        subViewModel.inputCi = value
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
+        })
     }
     
     private func getFormula(for operation: ALUOperation) -> [String] {
@@ -155,11 +126,8 @@ struct MainView: View {
 
 #Preview {
     MainView(
-        viewModel: MainViewModel(),
-        addViewModel: ADDViewModel(),
-        subViewModel: SUBViewModel(),
-        andViewModel: ANDViewModel(),
-        orViewModel: ORViewModel(),
-        xorViewModel: XORViewModel()
+        store: Store(initialState: MainFeature.State()) {
+            MainFeature()
+        }
     )
 }
