@@ -75,10 +75,7 @@ Logic Lab Circuit provides an interactive, self-guided simulation that:
 
 ## 📱 Screenshots
 
-<p align="center">
-  ![LLC-1](https://github.com/user-attachments/assets/f88dada4-8514-4f1a-be92-90128ca5c2dd)
-  ![LLC-2](https://github.com/user-attachments/assets/63828e6e-c44d-4267-bd94-2259fef613f5)
-</p>
+| ![LLC-1](https://github.com/user-attachments/assets/f88dada4-8514-4f1a-be92-90128ca5c2dd) | ![LLC-2](https://github.com/user-attachments/assets/63828e6e-c44d-4267-bd94-2259fef613f5) |
 
 ---
 
