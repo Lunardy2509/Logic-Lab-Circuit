@@ -6,18 +6,16 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct LogicLabCircuitApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(
-                viewModel: MainViewModel(),
-                addViewModel: ADDViewModel(),
-                subViewModel: SUBViewModel(),
-                andViewModel: ANDViewModel(),
-                orViewModel: ORViewModel(),
-                xorViewModel: XORViewModel()
+                store: Store(initialState: MainFeature.State()) {
+                    MainFeature()
+                }
             )
         }
     }

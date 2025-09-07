@@ -6,30 +6,41 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct ORView: View {
-    @ObservedObject var viewModel: ORViewModel
+    let store: StoreOf<ORFeature>
 
     var body: some View {
-        VStack(spacing: -100) {
-            Text("OR Logic Gate")
-                .font(.title3)
-                .bold()
-            
-            ZStack {
-                ORWirePath(viewModel: viewModel)
-                ORGateLayout(viewModel: viewModel)
+        WithViewStore(self.store, observe: { $0 }, content: { viewStore in
+            VStack(spacing: -100) {
+                Text("OR Logic Gate")
+                    .font(.title3)
+                    .bold()
+                
+                ZStack {
+                    ORWirePath(store: store)
+                    ORGateLayout(store: store)
+                }
+                .frame(width: 360, height: 300)
+                .onAppear {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputA) {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputB) {
+                    viewStore.send(.computeOutput)
+                }
             }
-            .frame(width: 360, height: 300)
-            .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
-            .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
-        }
+        })
     }
 }
+
 #Preview {
-    let vm = ORViewModel()
-    vm.inputA = false
-    vm.inputB = true
-    vm.computeOutput()
-    return ORView(viewModel: vm)
+    ORView(
+        store: Store(initialState: ORFeature.State(inputA: false, inputB: true)) {
+            ORFeature()
+        }
+    )
 }

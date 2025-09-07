@@ -6,33 +6,42 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct ANDView: View {
-    @ObservedObject var viewModel: ANDViewModel
+    let store: StoreOf<ANDFeature>
 
     var body: some View {
-        VStack(spacing: -100) {
-            Text("AND Logic Gate")
-                .font(.title3)
-                .bold()
-            
-            ZStack {
-                ANDWirePath(viewModel: viewModel)
-                ANDGateLayout(viewModel: viewModel)
+        WithViewStore(self.store, observe: { $0 }, content: { viewStore in
+            VStack(spacing: -100) {
+                Text("AND Logic Gate")
+                    .font(.title3)
+                    .bold()
+                
+                ZStack {
+                    ANDWirePath(store: store)
+                    ANDGateLayout(store: store)
+                }
+                .frame(width: 360, height: 300)
+                .onAppear {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputA) {
+                    viewStore.send(.computeOutput)
+                }
+                .onChange(of: viewStore.inputB) {
+                    viewStore.send(.computeOutput)
+                }
             }
-            .frame(width: 360, height: 300)
-            .onChange(of: viewModel.inputA) { viewModel.computeOutput() }
-            .onChange(of: viewModel.inputB) { viewModel.computeOutput() }
-        }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
+            .padding()
+        })
     }
 }
 
 #Preview {
-    let vm = ANDViewModel()
-    vm.inputA = false
-    vm.inputB = true
-    vm.computeOutput()
-    return ANDView(viewModel: vm)
+    ANDView(
+        store: Store(initialState: ANDFeature.State(inputA: false, inputB: true)) {
+            ANDFeature()
+        }
+    )
 }
