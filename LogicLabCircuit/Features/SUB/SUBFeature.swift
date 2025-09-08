@@ -48,10 +48,13 @@ struct SUBFeature {
                 }
                 
             case .computeOutput:
-                let andAB = state.inputA && state.inputB
+                let notA = !state.inputA
+                let notAANDB = notA && state.inputB
+                let notAANDBi = notA && state.inputBi
+                let bANDBi = state.inputB && state.inputBi
                 let xorAB = state.inputA != state.inputB
                 state.outputD = xorAB != state.inputBi
-                state.outputBo = andAB != (state.inputBi != xorAB)
+                state.outputBo = notAANDB || notAANDBi || bANDBi
                 return .none
             }
         }

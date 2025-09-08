@@ -8,23 +8,23 @@
 import Foundation
 
 struct FullAdderFormula {
-    static let sum = "(A ⊕ B) ⊕ Ci"
-    static let carryOut = "(A ⋅ B) + (Ci ⋅ (A ⊕ B))"
+    static let sum = "(A ⊕ B) ⊕ Cin"
+    static let carryOut = "(A ⋅ B) + (Cin ⋅ (A ⊕ B))"
 }
 
 struct FullSubtractorFormula {
-    static let difference = "Bi ⊕ (A ⊕ B)"
-    static let borrow = "(A ⋅ B) ⊕ (Bi ⊕ (A ⊕ B))"
+    static let difference = "(A ⊕ B) ⊕ Bin"
+    static let borrow = "¬A ⋅ B + ¬A ⋅ Bin + B ⋅ Bin"
 }
 
 struct HalfAdderFormula {
-    static let sum = "(A ⊕ B)"
+    static let sum = "A ⊕ B"
     static let carryOut = "A ⋅ B" 
 }
 
 struct HalfSubtractorFormula {
-    static let difference = "A ⊕ (B ⊕ Bi)"
-    static let borrow = "(A ⊕ B) ⋅ Bi"
+    static let difference = "A ⊕ B"
+    static let borrow = "¬A ⋅ B"
 }
 
 struct ANDFormula {
